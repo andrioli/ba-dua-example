@@ -28,6 +28,9 @@ before_script:
 
 script: mvn test
 
+after_success:
+  - java -jar lib/ba-dua-cli-0.3.0-all.jar report -classes target/classes/ -input target/badua.ser
+
 cache:
   directories:
   - $HOME/.m2
