@@ -4,7 +4,7 @@ import static br.usp.each.saeg.badua.example.Sort.sort;
 
 import java.util.Arrays;
 
-public class SortTest {
+public class SortTest extends junit.framework.TestCase {
 
     public void testArrayOrdered() {
         final int[] array = new int[] { 2, 3, 1 };
