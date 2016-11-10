@@ -18,6 +18,11 @@ env:
   - JDK=oraclejdk7 BUILD=ant
   - JDK=openjdk7 BUILD=ant
   - JDK=openjdk6 BUILD=ant
+  - JDK=oraclejdk9 BUILD=script
+  - JDK=oraclejdk8 BUILD=script
+  - JDK=oraclejdk7 BUILD=script
+  - JDK=openjdk7 BUILD=script
+  - JDK=openjdk6 BUILD=script
 
 before_install:
   - remove_dir_from_path $JAVA_HOME/bin
@@ -34,6 +39,7 @@ before_script:
 script:
   - if [[ "$BUILD" == "maven" ]]; then mvn test; fi
   - if [[ "$BUILD" == "ant" ]]; then ant test; fi
+  - if [[ "$BUILD" == "script" ]]; then sh build.sh; fi
 
 after_success:
   - if [ -f 'target/badua.ser' ]; then java -jar lib/ba-dua-cli-0.3.0-all.jar report -classes target/classes/ -input target/badua.ser; fi
