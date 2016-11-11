@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class SortTest extends junit.framework.TestCase {
 
-    public void testArrayOrdered() {
+    public void testSort() {
         final int[] array = new int[] { 2, 3, 1 };
         final int[] expected = new int[] { 3, 2, 1 };
         sort(array, array.length);
