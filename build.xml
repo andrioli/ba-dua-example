@@ -6,6 +6,13 @@
 	<property name="main.build.dir" value="build/main" />
 	<property name="test.build.dir" value="build/test" />
 
+	<condition property="ant.build.javac.source" value="1.8">
+		<equals arg1="1.9" arg2="${java.specification.version}" />
+	</condition>
+	<condition property="ant.build.javac.target" value="1.8">
+		<equals arg1="1.9" arg2="${java.specification.version}" />
+	</condition>
+
 	<target name="clean">
 		<delete dir="build" />
 	</target>
