@@ -25,7 +25,7 @@
 		<profile>
 			<id>jdk19</id>
 			<activation>
-				<jdk>1.9</jdk>
+				<jdk>9</jdk>
 			</activation>
 			<properties>
 				<maven.compiler.source>1.8</maven.compiler.source>
