@@ -10,7 +10,7 @@ TEST_BUILD_DIR=build/test
 # Compile source files
 echo "Compiling sources..."
 mkdir -p $MAIN_BUILD_DIR
-javac -source 1.6 -target 1.6 -nowarn -d $MAIN_BUILD_DIR $(find $MAIN_SRC_DIR -iname *.java)
+javac -d $MAIN_BUILD_DIR $(find $MAIN_SRC_DIR -iname *.java)
 
 # Instrument
 echo "Instrument..."
@@ -19,7 +19,7 @@ java -jar lib/ba-dua-cli-0.3.0-all.jar instrument -src $MAIN_BUILD_DIR -dest $IN
 
 echo "Compiling tests..."
 mkdir -p $TEST_BUILD_DIR
-javac -source 1.6 -target 1.6 -nowarn -d $TEST_BUILD_DIR \
+javac -d $TEST_BUILD_DIR \
       -cp lib/junit-3.8.2.jar:$MAIN_BUILD_DIR $(find $TEST_SRC_DIR -iname *.java)
 
 echo "Running tests..."
