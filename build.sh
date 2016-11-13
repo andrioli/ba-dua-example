@@ -10,7 +10,7 @@ TEST_BUILD_DIR=build/test
 # Compile source files
 echo "Compiling sources..."
 mkdir -p $MAIN_BUILD_DIR
-javac $OPTS -d $MAIN_BUILD_DIR $(find $MAIN_SRC_DIR -iname *.java)
+javac $OPTS -g -d $MAIN_BUILD_DIR $(find $MAIN_SRC_DIR -iname *.java)
 
 # Instrument
 echo "Instrument..."
