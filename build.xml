@@ -35,9 +35,6 @@
 	<target name="test" depends="test-compile">
 		<junit fork="true" forkmode="once">
 			<jvmarg line="-javaagent:lib/ba-dua-agent-rt-0.3.0-all.jar -Doutput.file=build/badua.ser" />
-			<assertions>
-				<enable />
-			</assertions>
 			<classpath>
 				<pathelement location="lib/junit-3.8.2.jar" />
 				<pathelement location="${main.build.dir}" />

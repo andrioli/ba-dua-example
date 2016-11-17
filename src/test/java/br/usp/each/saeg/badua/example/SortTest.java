@@ -10,7 +10,7 @@ public class SortTest extends junit.framework.TestCase {
         final int[] array = new int[] { 2, 3, 1 };
         final int[] expected = new int[] { 3, 2, 1 };
         sort(array, array.length);
-        assert Arrays.equals(expected, array);
+        assertTrue(Arrays.equals(expected, array));
     }
 
 }

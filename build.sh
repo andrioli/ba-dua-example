@@ -25,4 +25,4 @@ javac $OPTS -d $TEST_BUILD_DIR \
 echo "Running tests..."
 java -Doutput.file=build/badua.ser \
      -cp lib/junit-3.8.2.jar:lib/ba-dua-cli-0.3.0-all.jar:$INST_BUILD_DIR:$TEST_BUILD_DIR \
-     -ea junit.textui.TestRunner br.usp.each.saeg.badua.example.Suite
+     junit.textui.TestRunner br.usp.each.saeg.badua.example.Suite
