@@ -5,41 +5,31 @@ sudo: false
 addons:
   apt:
     packages:
-      - oracle-java9-installer
+      - openjdk-6-jdk
+
+jdk:
+  - oraclejdk9
+  - oraclejdk8
+  - openjdk7
+  - openjdk6
 
 env:
-  - JDK=oraclejdk9 BUILD=maven MAVEN_SKIP_RC=true
-  - JDK=oraclejdk8 BUILD=maven
-  - JDK=oraclejdk7 BUILD=maven
-  - JDK=openjdk7 BUILD=maven
-  - JDK=openjdk6 BUILD=maven
-  - JDK=oraclejdk9 BUILD=ant
-  - JDK=oraclejdk8 BUILD=ant
-  - JDK=oraclejdk7 BUILD=ant
-  - JDK=openjdk7 BUILD=ant
-  - JDK=openjdk6 BUILD=ant
-  - JDK=oraclejdk9 BUILD=script OPTS="-source 1.8 -target 1.8 -nowarn"
-  - JDK=oraclejdk8 BUILD=script
-  - JDK=oraclejdk7 BUILD=script
-  - JDK=openjdk7 BUILD=script
-  - JDK=openjdk6 BUILD=script
-
-before_install:
-  - remove_dir_from_path $JAVA_HOME/bin
-  - export JAVA_HOME=/usr/lib/jvm/java-9-oracle
-  - export PATH=$JAVA_HOME/bin:$PATH
-
-install: true
+  - BUILD=maven
+  - BUILD=ant
+  - BUILD=script
 
 before_script:
-  - if [[ "$JDK" != "oraclejdk9" ]]; then jdk_switcher use $JDK; fi
-  - java -Xmx32m -version
-  - javac -J-Xmx32m -version
+  - wget https://archive.apache.org/dist/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.zip
+  - unzip -qq apache-maven-3.2.5-bin.zip -d ../
+  - export M2_HOME=$PWD/../apache-maven-3.2.5
+  - export PATH=$M2_HOME/bin:$PATH
+
+install: true
 
 script:
   - if [[ "$BUILD" == "maven" ]]; then mvn test; fi
   - if [[ "$BUILD" == "ant" ]]; then ant test; fi
-  - if [[ "$BUILD" == "script" ]]; then sh build.sh; fi
+  - if [[ "$BUILD" == "script" ]]; then ./build.sh; fi
   - if [ -f 'target/badua.ser' ]; then java -jar lib/ba-dua-cli-0.3.0-all.jar report -classes target/classes/ -input target/badua.ser; fi
   - if [ -f 'build/badua.ser' ]; then java -jar lib/ba-dua-cli-0.3.0-all.jar report -classes build/main/ -input build/badua.ser; fi
 

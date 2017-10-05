@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 MAIN_SRC_DIR=src/main/java
 TEST_SRC_DIR=src/test/java
@@ -6,6 +6,11 @@ TEST_SRC_DIR=src/test/java
 MAIN_BUILD_DIR=build/main
 INST_BUILD_DIR=build/inst
 TEST_BUILD_DIR=build/test
+
+version=$(javac -version 2>&1 | grep javac | cut -d ' ' -f2)
+if [[ "$version" == "9" ]]; then
+    OPTS="-source 1.8 -target 1.8 -nowarn"
+fi
 
 # Compile source files
 echo "Compiling sources..."
