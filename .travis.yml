@@ -30,8 +30,8 @@ script:
   - if [[ "$BUILD" == "maven" ]]; then mvn test; fi
   - if [[ "$BUILD" == "ant" ]]; then ant test; fi
   - if [[ "$BUILD" == "script" ]]; then ./build.sh; fi
-  - if [ -f 'target/badua.ser' ]; then java -jar lib/ba-dua-cli-0.3.0-all.jar report -classes target/classes/ -input target/badua.ser; fi
-  - if [ -f 'build/badua.ser' ]; then java -jar lib/ba-dua-cli-0.3.0-all.jar report -classes build/main/ -input build/badua.ser; fi
+  - if [ -f 'target/badua.ser' ]; then java -jar lib/ba-dua-cli-0.4.0-all.jar report -classes target/classes/ -input target/badua.ser; fi
+  - if [ -f 'build/badua.ser' ]; then java -jar lib/ba-dua-cli-0.4.0-all.jar report -classes build/main/ -input build/badua.ser; fi
 
 cache:
   directories:

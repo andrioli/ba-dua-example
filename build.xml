@@ -6,13 +6,6 @@
 	<property name="main.build.dir" value="build/main" />
 	<property name="test.build.dir" value="build/test" />
 
-	<condition property="ant.build.javac.source" value="1.8">
-		<equals arg1="9" arg2="${java.specification.version}" />
-	</condition>
-	<condition property="ant.build.javac.target" value="1.8">
-		<equals arg1="9" arg2="${java.specification.version}" />
-	</condition>
-
 	<target name="clean">
 		<delete dir="build" />
 	</target>
@@ -34,7 +27,7 @@
 
 	<target name="test" depends="test-compile">
 		<junit fork="true" forkmode="once">
-			<jvmarg line="-javaagent:lib/ba-dua-agent-rt-0.3.0-all.jar -Doutput.file=build/badua.ser" />
+			<jvmarg line="-javaagent:lib/ba-dua-agent-rt-0.4.0-all.jar -Doutput.file=build/badua.ser" />
 			<classpath>
 				<pathelement location="lib/junit-3.8.2.jar" />
 				<pathelement location="${main.build.dir}" />

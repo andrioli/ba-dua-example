@@ -7,11 +7,6 @@ MAIN_BUILD_DIR=build/main
 INST_BUILD_DIR=build/inst
 TEST_BUILD_DIR=build/test
 
-version=$(javac -version 2>&1 | grep javac | cut -d ' ' -f2)
-if [[ "$version" == "9" ]]; then
-    OPTS="-source 1.8 -target 1.8 -nowarn"
-fi
-
 # Compile source files
 echo "Compiling sources..."
 mkdir -p $MAIN_BUILD_DIR
@@ -20,7 +15,7 @@ javac $OPTS -g -d $MAIN_BUILD_DIR $(find $MAIN_SRC_DIR -iname *.java)
 # Instrument
 echo "Instrument..."
 mkdir -p $INST_BUILD_DIR
-java -jar lib/ba-dua-cli-0.3.0-all.jar instrument -src $MAIN_BUILD_DIR -dest $INST_BUILD_DIR
+java -jar lib/ba-dua-cli-0.4.0-all.jar instrument -src $MAIN_BUILD_DIR -dest $INST_BUILD_DIR
 
 echo "Compiling tests..."
 mkdir -p $TEST_BUILD_DIR
@@ -29,5 +24,5 @@ javac $OPTS -d $TEST_BUILD_DIR \
 
 echo "Running tests..."
 java -Doutput.file=build/badua.ser \
-     -cp lib/junit-3.8.2.jar:lib/ba-dua-cli-0.3.0-all.jar:$INST_BUILD_DIR:$TEST_BUILD_DIR \
+     -cp lib/junit-3.8.2.jar:lib/ba-dua-cli-0.4.0-all.jar:$INST_BUILD_DIR:$TEST_BUILD_DIR \
      junit.textui.TestRunner br.usp.each.saeg.badua.example.Suite

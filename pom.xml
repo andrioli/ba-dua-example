@@ -10,7 +10,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>${java.specification.version}</maven.compiler.source>
 		<maven.compiler.target>${java.specification.version}</maven.compiler.target>
-		<argLine>-javaagent:lib/ba-dua-agent-rt-0.3.0-all.jar -Doutput.file=target/badua.ser</argLine>
+		<argLine>-javaagent:lib/ba-dua-agent-rt-0.4.0-all.jar -Doutput.file=target/badua.ser</argLine>
 	</properties>
 
 	<dependencies>
@@ -20,18 +20,5 @@
 			<version>3.8.2</version>
 		</dependency>
 	</dependencies>
-
-	<profiles>
-		<profile>
-			<id>jdk19</id>
-			<activation>
-				<jdk>9</jdk>
-			</activation>
-			<properties>
-				<maven.compiler.source>1.8</maven.compiler.source>
-				<maven.compiler.target>1.8</maven.compiler.target>
-			</properties>
-		</profile>
-	</profiles>
 
 </project>
